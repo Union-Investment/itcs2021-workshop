@@ -32,19 +32,19 @@ async def add_entry(date: str, dax: int, sp500: int):
   return {date: fake_items_db[date]}
 
 
-@app.post("/uploadfiles/")
-async def create_upload_files(file: UploadFile = File(...)):
-  content = await file.read()
-  decoded_content = content.decode()
-  splitted_content = decoded_content.split()
+# @app.post("/uploadfiles/")
+# async def create_upload_files(file: UploadFile = File(...)):
+#   content = await file.read()
+#   decoded_content = content.decode()
+#   splitted_content = decoded_content.split()
 
-  data_storage = []
-  for i in range(len(splitted_content)):
-    lines = splitted_content[i].split(',')
-    data_storage.append(lines)
-  add_entries_to_dict(data_storage)
+#   data_storage = []
+#   for i in range(len(splitted_content)):
+#     lines = splitted_content[i].split(',')
+#     data_storage.append(lines)
+#   add_entries_to_dict(data_storage)
 
-  return {"added entries": data_storage}
+#   return {"added entries": data_storage}
 
 
 def add_entries_to_dict(data):
