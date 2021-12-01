@@ -13,6 +13,7 @@ WORKDIR /app
 # install the packages from the Pipfile in the container
 RUN pip install pipenv
 RUN pipenv install --system --deploy --ignore-pipfile
+RUN pip uninstall python-multipart
 RUN pip install python-multipart
 
 # expose the port that uvicorn will run the app on
