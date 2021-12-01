@@ -1,6 +1,6 @@
 import uvicorn
-from fastapi import FastAPI, HTTPException#, File, UploadFile
-from typing import Optional#, List
+from fastapi import FastAPI, HTTPException, File, UploadFile
+from typing import Optional, List
 from csv import reader
 import os
 
