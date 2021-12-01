@@ -31,16 +31,13 @@ async def read_item(date: str, index: str = "DAX", show_all_indices: Optional[bo
 @app.post("/uploadfile/")
 async def create_upload_files(file: UploadFile = File(...)):
   content = await file.read()
-  decoded_content = content.decode()
-  splitted_content = decoded_content.split()
 
-  data_storage = []
-  for i in range(len(splitted_content)):
-    lines = splitted_content[i].split(',')
-    data_storage.append(lines)
-  add_entries_to_dict(data_storage)
+  # add the entries of the uploaded file to fake_items_db
+  # data structure of fake_items_db:
+  # {"09091990": {"DAX": "1232456", "SP500:" "9238748"}, "08081990":{"DAX": "2345646", "SP500:" "2324432"}, ..}
 
-  return {"added entries": data_storage}
+
+
 
 
 def add_entries_to_dict(data):
