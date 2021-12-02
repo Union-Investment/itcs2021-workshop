@@ -48,6 +48,12 @@ Frankfurt, 03.12.2021 - Sven Schürmann & Carina Esau
 
 # Hands on: FastApi
 
+Use Cases:
+
+- Frage Daten des DAX / SP500 zu einem bestimmten Datum ab (GET)
+- Lade neue Daten aus einer .csv Datei hoch (POST)
+
+
 ``` python
 import uvicorn
 from fastapi import FastAPI, HTTPException, File, UploadFile
