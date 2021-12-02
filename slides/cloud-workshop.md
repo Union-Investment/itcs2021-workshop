@@ -24,13 +24,8 @@ Frankfurt, 03.12.2021 - Sven Schürmann & Carina Esau
 
 # Welcome
 
-- Wer sind wir
-- Wie funktioniert die Entwicklungsumgebung
-- Was machen wir heute
 
-*Hier Bild einfügen über die Strecke*
-
-**Fastapi**=>**Containerimage**=>**Pipeline (GitHubAction)**=>**AppService**
+![workflow-itcs](workflow-itcs.PNG)
 
 ---
 
@@ -58,23 +53,103 @@ app = FastAPI()
 @app.get("/")
 async def root():
     return {"message": "Hello World"}
+
 ```
 
-[Dokumentation zu FastApi](https://fastapi.tiangolo.com/tutorial/request-files/)
+[Dokumentation zu FastApi Bibliothek](https://fastapi.tiangolo.com/tutorial/request-files/)
 
 ---
+Serverstart für das Testen der Funktionalität
+``` python
+# starting pipenv
+pipenv shell
 
+# starting uvicorn server
+uvicorn main:app --reload
+
+pip3 uninstall python-multipart
+pip3 install python-multipart
+
+uvicorn main:app --reload
+```
+
+---
 # Containerization
 
 ---
 
-# CI/CD
+# Hands on: Container
 
+``` bash
+# building the image
+docker build -f ./Dockerfile -t fastapi:1.0
+
+# running the container
+docker run -p 8000:8000 -t fastapi-cd:1.0
+
+```
+
+---
+
+# CI/CD
+---
+# Demo: Deployment via GitHub Actions
+
+``` bash
+name: Build and deploy ITCS API
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - name: Checkout GitHub Actions
+      uses: actions/checkout@main
+
+
+    - name: Login via Azure CLI
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS_ITCS }}
+
+
+    - name: Login to Container Registry
+      uses: azure/docker-login@v1
+      with:
+        login-server: registry.apps.union-investment.de
+        username: ${{ secrets.REGISTRY_USERNAME }}
+        password: ${{ secrets.REGISTRY_PASSWORD }}
+
+
+    - name: Build and push container image to registry
+      run: |
+        docker build ./src/ -t registry.apps.union-investment.de/itcs/fastapi:${{ github.sha }}
+        docker push registry.apps.union-investment.de/itcs/fastapi:${{ github.sha }}
+
+
+    - name: Deploy to App Service
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: 'appsvc-itcs-fastapi'
+        images: 'registry.apps.union-investment.de/itcs/fastapi:${{ github.sha }}'
+
+
+    - name: Azure logout
+      run: |
+        az logout
+
+```
 ---
 
 # Wrap Up
 
-*vllt hier das bild zum Ablauf und beim Welcome nur grob betitelt*
+![workflow-itcs](workflow-itcs.PNG)
 
 ----
 
