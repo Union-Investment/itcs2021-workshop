@@ -31,7 +31,7 @@ jobs:
 
     - name: Build and push container image to registry
       run: |
-        docker build . -t registry.apps.union-investment.de/itcs/fastapi:${{ github.sha }}
+        docker build ./src/ -t registry.apps.union-investment.de/itcs/fastapi:${{ github.sha }}
         docker push registry.apps.union-investment.de/itcs/fastapi:${{ github.sha }}
 
 
