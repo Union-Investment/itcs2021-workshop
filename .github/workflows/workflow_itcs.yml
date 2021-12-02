@@ -38,7 +38,7 @@ jobs:
     - name: Deploy to App Service
       uses: azure/webapps-deploy@v2
       with:
-        app-name: 'appsvc-00f94009'
+        app-name: 'appsvc-itcs-fastapi'
         images: 'registry.apps.union-investment.de/itcs/fastapi:${{ github.sha }}'
 
 
