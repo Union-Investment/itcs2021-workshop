@@ -136,7 +136,7 @@ def initialize_dict(fake_items_db, filename):
 
 
 fake_items_db = dict()
-fake_items_db = initialize_dict(fake_items_db=fake_items_db, filename="indices.csv")
+fake_items_db = initialize_dict(fake_items_db=fake_items_db, filename="daxsp.csv")
 
 if __name__ == "__main__":
     uvicorn.run("main:app", host="0.0.0.0", port=port, reload=False)
@@ -162,6 +162,7 @@ uvicorn main:app --reload
 ```
 
 Erreichbarkeit über 127.0.0.1:8000 im Browser
+User Interface über 127.0.0.1:8000/docs
 
 ---
 # Containerization
