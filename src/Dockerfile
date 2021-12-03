@@ -3,7 +3,7 @@ FROM python:3.7.9-slim
 
 # copy files to the /app folder in the container
 COPY ./main.py /app/main.py
-COPY ./indices.csv /app/indices.csv
+COPY ./daxsp.csv /app/daxsp.csv
 COPY ./Pipfile /app/Pipfile
 COPY ./Pipfile.lock /app/Pipfile.lock
 
