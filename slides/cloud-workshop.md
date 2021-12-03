@@ -50,17 +50,18 @@ Frankfurt, 03.12.2021 - Sven Schürmann & Carina Esau
 
 
 ---
+# Demo: Cloud Desk
+
+---
 
 # Hands on: FastApi
 
-Use Cases:
+## Use Cases
 
 - Frage Daten des DAX / SP500 zu einem bestimmten Datum ab (GET)
 - Lade neue Daten aus einer .csv Datei hoch (POST)
 
 ---
-
-
 
 ``` python
 import uvicorn
@@ -284,56 +285,6 @@ and reliable
 ---
 # Demo: Deployment via GitHub Actions
 
-``` bash
-name: Build and deploy ITCS API
-
-on:
-  push:
-    branches:
-      - main
-
-jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
-
-    steps:
-
-    - name: Checkout GitHub Actions
-      uses: actions/checkout@main
-
-
-    - name: Login via Azure CLI
-      uses: azure/login@v1
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS_ITCS }}
-
-
-    - name: Login to Container Registry
-      uses: azure/docker-login@v1
-      with:
-        login-server: registry.apps.union-investment.de
-        username: ${{ secrets.REGISTRY_USERNAME }}
-        password: ${{ secrets.REGISTRY_PASSWORD }}
-
-
-    - name: Build and push container image to registry
-      run: |
-        docker build ./src/ -t registry.apps.union-investment.de/itcs/fastapi:${{ github.sha }}
-        docker push registry.apps.union-investment.de/itcs/fastapi:${{ github.sha }}
-
-
-    - name: Deploy to App Service
-      uses: azure/webapps-deploy@v2
-      with:
-        app-name: 'appsvc-itcs-fastapi'
-        images: 'registry.apps.union-investment.de/itcs/fastapi:${{ github.sha }}'
-
-
-    - name: Azure logout
-      run: |
-        az logout
-
-```
 ---
 
 # Wrap Up
