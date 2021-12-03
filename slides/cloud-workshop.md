@@ -30,7 +30,7 @@ Frankfurt, 03.12.2021 - Sven Schürmann & Carina Esau
 # Welcome
 
 
-![workflow-itcs](workflow-itcs.PNG)
+![workflow-itcs](./images/workflow-itcs.PNG)
 
 ---
 
@@ -173,14 +173,14 @@ User Interface über 127.0.0.1:8000/docs
 # Containerization
 
 ---
-# Exkurs 
+# Exkurs
 ### Software Deployment + Release
 
 ![center](images/software_shipping.jpg)
 
 ---
 
-# Exkurs 
+# Exkurs
 ### Software Deployment + Release
 
 ![center](images/software_shipping_2.jpg)
@@ -189,7 +189,7 @@ User Interface über 127.0.0.1:8000/docs
 
 # Was wäre wenn..
 
-- wir einfach die Ausführungsumgebung dem Ops Team ebenfalls mitliefern?
+- Wir einfach die Ausführungsumgebung dem Ops Team ebenfalls mitliefern?
 - Mit genau dieser Frage beschäftigte sich Docker 2013 primär
 - Daraus ergab sich das Konzept eine Appliaktion in einem Container zu verpacken
 
@@ -238,7 +238,7 @@ Isolierung
 docker build -f ./Dockerfile -t fastapi:1.0
 
 # running the container
-docker run -p 8000:8000 -t fastapi-cd:1.0
+docker run -p 8000:8000 -t fastapi:1.0
 
 ```
 
@@ -334,7 +334,7 @@ jobs:
 
 # Wrap Up
 
-![workflow-itcs](workflow-itcs.PNG)
+![workflow-itcs](./images/workflow-itcs.PNG)
 
 ----
 
