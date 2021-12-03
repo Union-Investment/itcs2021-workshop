@@ -4,9 +4,14 @@ marp: true
 <!-- backgroundColor: white -->
 <!--
 theme: gaia
-paginate: false
+paginate: true
 -->
-
+<style>
+img[alt~="center"] {
+  display: block;
+  margin: 0 auto;
+}
+</style>
 ## Software Development in Cloud Environments
 #### Workshop ITCS - Union Investment
 Frankfurt, 03.12.2021 - Sven Schürmann & Carina Esau
@@ -168,7 +173,64 @@ User Interface über 127.0.0.1:8000/docs
 # Containerization
 
 ---
+# Exkurs 
+### Software Deployment + Release
 
+![center](images/software_shipping.jpg)
+
+---
+
+# Exkurs 
+### Software Deployment + Release
+
+![center](images/software_shipping_2.jpg)
+
+---
+
+# Was wäre wenn..
+
+- wir einfach die Ausführungsumgebung dem Ops Team ebenfalls mitliefern?
+- Mit genau dieser Frage beschäftigte sich Docker 2013 primär
+- Daraus ergab sich das Konzept eine Appliaktion in einem Container zu verpacken
+
+---
+
+# Ein Container Image erstellen
+
+- Ein guter Anfang ist die Erstellung eines Dockerfile
+- Eine Textdatei, die als Skript zum Erstellen eines Images dient
+- Erstellen wird es mit dem Befehl `docker build`
+
+![width:450px center](images/docker_build.jpg)
+
+---
+
+# Images teilen
+
+- Nach der Erstellung ist das Image nur lokal verfügbar.
+- Um es freizugeben, pushen Sie es mit Docker Push in eine Registry
+- Docker Hub ist die Standard-Registry
+- Viele andere Angebote von Drittanbietern sind ebenfalls verfügbar
+- Sobald es freigegeben ist, können andere das Image abrufen
+
+---
+
+# Was ist ein Container
+
+- Ein Container sieht zwar aus wie eine VM, ist es aber nicht!
+- Ein Container ist nur ein weiterer Prozess auf dem Rechner
+- Er verwendet Namespaces und Kontrollgruppen (cgroups), um eine
+Isolierung
+- Zu den Namensräumen gehören Netzwerk, Prozess, Benutzer, IPC, Mount und andere.
+- Um einen Container zu starten, verwenden Sie den Befehl `docker container run`
+
+---
+
+# Container vs VM
+
+![width:1000px bg](images/container_vs_vm.jpg)
+
+---
 # Hands on: Container
 
 ``` bash
@@ -182,7 +244,39 @@ docker run -p 8000:8000 -t fastapi-cd:1.0
 
 ---
 
-# CI/CD
+# Contionous Delivery
+---
+# Exkurs: DevOps Model
+- Bevor wir uns dem Thema widmen, müssen wir es einordnen
+![width:450px center](images/devops_model.jpg)
+
+- Der Mensch ist wichtig und nicht die Technologie!
+---
+# Contionous Delivery
+
+![width:1200px bg](images/cd_model.jpg)
+
+---
+# Contionous Delivery - 8 principles
+
+1. The process for releasing/deploying software MUST be repeatable
+and reliable
+2. Automate everything!
+3. If somethings difficult or painful, do it more often
+4. Keep everything in source control
+5. Done means “released”
+6. Build quality in!
+7. Everybody has responsibility for the release process
+8. Improve continuously
+
+---
+# Contionous Delivery - 4 practices
+
+1. Build binaries only once
+2. Use precisely the same mechanism to deploy to every environment
+3. Smoke test your deployment
+4. If anything fails, stop the line!
+
 ---
 # Demo: Deployment via GitHub Actions
 
