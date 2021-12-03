@@ -35,13 +35,13 @@ Frankfurt, 03.12.2021 - Sven Schürmann & Carina Esau
 
 - Entwicklungsumgebungen in der Cloud verhindern zeitaufwändige Konfigurationen
 
-- Ablösung von Monolithen durch Microservices
+- Ablösung von Monolithen durch Microservices verbessern die Robustheit
+
+- Hoher Grad an Automatisierung steigert die Effizienz (CI / CD)
+
+- API first Strategie unterstützen einen einfachen Datenaustausch
 
 - Container erlauben Flexibilität und Skalierbarkeit
-
-- Hoher Grad an Automatisierung (CI / CD)
-
-- API first
 
 
 ---
